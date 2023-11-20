@@ -1,0 +1,38 @@
+<html>
+<head>
+    <link rel="stylesheet" href="static/mystyle.css">
+</head>
+
+<body>
+<h1>Tree Manager</h1>
+
+<table>
+    <tr>
+        <td>Depth</td>
+        <td>Tree Nodes</td>
+    </tr>
+    [% FOREACH row IN table %]
+    <tr>
+        <td>[% row.depth %]</td>
+        [% FOREACH child IN row.childs %]
+        <td colspan="[% child.span %]">[% child.content %]</td>
+        [% END %]
+    </tr>
+    [% END %]
+</table>
+
+[% IF error %]
+<span class="error">[% error %]</span>
+[% END %]
+
+<form method="POST" action="add">
+    <input name="pid">
+    <input type="submit" value="Add">
+</form>
+
+<pre>
+[% debug1 %]
+[% debug2 %]
+</pre>
+</body>
+</html>

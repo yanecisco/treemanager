@@ -1,0 +1,19 @@
+
+$ mysql
+CREATE DATABASE treemanager;
+
+CREATE USER 'treemanager'@'localhost' IDENTIFIED BY 'password';
+
+GRANT ALL PRIVILEGES ON treemanager.* TO 'treemanager'@'localhost';
+
+FLUSH PRIVILEGES;
+
+CREATE TABLE `tree` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tree_FK` (`parent_id`),
+  CONSTRAINT `tree_FK` FOREIGN KEY (`parent_id`) REFERENCES `tree` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
